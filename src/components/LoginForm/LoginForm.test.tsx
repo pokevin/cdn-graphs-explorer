@@ -22,6 +22,19 @@ describe("login form", () => {
     expect(spy).toHaveBeenCalledWith({ username: "name", password: "pwd" });
   });
 
+  it("check username and password required", async () => {
+    render(
+      <LoginForm
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      />
+    );
+    await userEvent.click(screen.getByRole("button", { name: "Connexion" }));
+    expect(screen.getByPlaceholderText("Username")).toBeInvalid();
+    expect(screen.getByPlaceholderText("Password")).toBeInvalid();
+  });
+
   it("can show errors", () => {
     render(<LoginForm error="Some error" />);
     expect(screen.getByRole("alert").textContent).toBe("Some error");
