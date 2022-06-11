@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import App from "./App";
+import LoginPage from ".";
 
 describe("app", () => {
   it("renders title", () => {
-    render(<App />);
+    render(<LoginPage />);
     expect(
       screen.getByRole("heading", { name: "CDN Graphs Explorer" })
     ).toBeInTheDocument();
