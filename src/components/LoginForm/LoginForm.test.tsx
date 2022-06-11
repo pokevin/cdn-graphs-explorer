@@ -21,4 +21,9 @@ describe("login form", () => {
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith({ username: "name", password: "pwd" });
   });
+
+  it("can show errors", () => {
+    render(<LoginForm error="Some error" />);
+    expect(screen.getByRole("alert").textContent).toBe("Some error");
+  });
 });

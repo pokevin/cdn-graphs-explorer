@@ -1,8 +1,19 @@
-import { Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import {
+  Alert,
+  AlertIcon,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+} from "@chakra-ui/react";
 import { FormDescription, BoxForm } from "./LoginForm.styled";
 import type { FormHTMLAttributes } from "react";
 
-export const LoginForm = (props: FormHTMLAttributes<HTMLFormElement>) => {
+type LoginFormProps = FormHTMLAttributes<HTMLFormElement> & {
+  error?: string;
+};
+
+export const LoginForm = ({ error, ...props }: LoginFormProps) => {
   return (
     <BoxForm {...props}>
       <FormDescription>Hello guys!</FormDescription>
@@ -13,6 +24,7 @@ export const LoginForm = (props: FormHTMLAttributes<HTMLFormElement>) => {
           type="text"
           name="username"
           id="username"
+          required
           placeholder="Username"
         />
       </FormControl>
@@ -22,9 +34,16 @@ export const LoginForm = (props: FormHTMLAttributes<HTMLFormElement>) => {
           type="password"
           name="password"
           id="password"
+          required
           placeholder="Password"
         />
       </FormControl>
+      {error && (
+        <Alert status="error">
+          <AlertIcon />
+          {error}
+        </Alert>
+      )}
       <Button type="submit" colorScheme="blue">
         Connexion
       </Button>
