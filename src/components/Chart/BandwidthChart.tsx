@@ -1,10 +1,10 @@
 import { useMemo } from "react";
+import { Chart } from "./Chart.styled";
 import {
   fullDateFormatter,
   shortDateFormatter,
   toGigaByte,
-} from "./BandwidthChart.utils";
-import { Chart } from "./BandwithChart.styled";
+} from "./Chart.utils";
 import type { BandwidthResponse } from "../../libs/cdn/cdn-provider";
 
 type BandwithChartProps = {
@@ -38,27 +38,24 @@ export const BandwithChart = ({ data }: BandwithChartProps) => {
       title="Capacity offload"
       data={{
         labels: p2p.map(([time]) => time),
-        datasets:
-          p2p.length > 0 && cdn.length > 0
-            ? [
-                {
-                  label: "P2P",
-                  data: p2p.map(([, value]) => toGigaByte(value)),
-                  fill: true,
-                  borderColor: "orange",
-                  backgroundColor: "orange",
-                  tension: 0.8,
-                },
-                {
-                  label: "HTTP",
-                  data: cdn.map(([, value]) => toGigaByte(value)),
-                  fill: true,
-                  borderColor: "rgb(179, 116, 0)",
-                  backgroundColor: "rgb(179, 116, 0)",
-                  tension: 0.8,
-                },
-              ]
-            : [],
+        datasets: [
+          {
+            label: "P2P",
+            data: p2p.map(([, value]) => toGigaByte(value)),
+            fill: true,
+            borderColor: "orange",
+            backgroundColor: "orange",
+            tension: 0.8,
+          },
+          {
+            label: "HTTP",
+            data: cdn.map(([, value]) => toGigaByte(value)),
+            fill: true,
+            borderColor: "rgb(179, 116, 0)",
+            backgroundColor: "rgb(179, 116, 0)",
+            tension: 0.8,
+          },
+        ],
       }}
       options={{
         elements: {

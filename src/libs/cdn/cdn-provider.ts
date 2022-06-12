@@ -7,12 +7,38 @@ export interface BandwidthResponse {
   p2p: [timestamp: number, value: number][];
 }
 
-export const getBandwith = async (
+export const getBandwidth = async (
   fetcher: typeof fetch
 ): Promise<BandwidthResponse> => {
   const fromDate = new Date();
   fromDate.setDate(fromDate.getDate() - 15);
   const response = await fetcher(`${BACKEND_ENDPOINT}/bandwidth`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify({
+      from: fromDate.getTime(),
+      to: Date.now(),
+    }),
+  });
+
+  if (response.ok) {
+    return response.json();
+  }
+  throw new Error(await response.text().catch(() => defaultErrorMessage));
+};
+
+export interface AudienceResponse {
+  audience: [timestamp: number, value: number][];
+}
+
+export const getAudience = async (
+  fetcher: typeof fetch
+): Promise<AudienceResponse> => {
+  const fromDate = new Date();
+  fromDate.setDate(fromDate.getDate() - 15);
+  const response = await fetcher(`${BACKEND_ENDPOINT}/audience`, {
     headers: {
       "Content-Type": "application/json",
     },
