@@ -2,6 +2,7 @@ import {
   Button,
   Heading,
   Icon,
+  Image,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -21,6 +22,7 @@ export const Header = () => {
 
   return (
     <HeaderContainer>
+      <Image src="/logo.png" w="10" h="10" alt="Logo" />
       <Popover placement="bottom">
         <PopoverTrigger>
           <UserIconButton
