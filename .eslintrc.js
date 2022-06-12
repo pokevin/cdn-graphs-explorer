@@ -66,6 +66,7 @@ module.exports = {
     "@typescript-eslint/no-non-null-asserted-nullish-coalescing": "error",
     "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
     "@typescript-eslint/no-unnecessary-condition": "error",
+    "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/prefer-enum-initializers": "error",
     "@typescript-eslint/prefer-includes": "error",
     "@typescript-eslint/prefer-nullish-coalescing": "error",
@@ -141,5 +142,6 @@ module.exports = {
     "prettier/prettier": "error",
     // React rules
     "react/prop-types": "off",
+    "react-hooks/exhaustive-deps": "off",
   },
 };
