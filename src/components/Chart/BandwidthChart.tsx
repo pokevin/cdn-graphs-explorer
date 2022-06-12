@@ -1,3 +1,5 @@
+import { Chart as ChartJS, registerables } from "chart.js";
+import ZoomPLugin from "chartjs-plugin-zoom";
 import { useMemo } from "react";
 import { Chart } from "./Chart.styled";
 import {
@@ -6,6 +8,8 @@ import {
   toGigaByte,
 } from "./Chart.utils";
 import type { BandwidthResponse } from "../../libs/cdn/cdn-provider";
+
+ChartJS.register(ZoomPLugin, ...registerables);
 
 type BandwithChartProps = {
   data?: BandwidthResponse;
@@ -92,6 +96,17 @@ export const BandwithChart = ({ data }: BandwithChartProps) => {
                 `Total: ${args
                   .reduce((acc, { raw }) => acc + (raw as number), 0)
                   .toFixed(3)} Gbps`,
+            },
+          },
+          zoom: {
+            zoom: {
+              wheel: {
+                enabled: true,
+              },
+              pinch: {
+                enabled: true,
+              },
+              mode: "xy",
             },
           },
         },

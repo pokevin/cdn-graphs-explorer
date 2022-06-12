@@ -1,4 +1,3 @@
-import "chart.js/auto";
 import { Alert, AlertIcon } from "@chakra-ui/react";
 import { AudienceChart } from "../../components/Chart/AudienceChart";
 import { BandwithChart } from "../../components/Chart/BandwidthChart";
