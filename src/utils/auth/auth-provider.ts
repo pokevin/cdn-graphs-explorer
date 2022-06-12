@@ -34,8 +34,7 @@ export const logout = async (token: string) => {
     body: JSON.stringify({ session_token: token }),
   });
   if (response.ok) {
-    const result = await response.json();
-    return result.session_token;
+    return;
   }
   if (response.status === 404) {
     throw new Error(error.notFound);
