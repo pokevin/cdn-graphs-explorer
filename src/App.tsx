@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import HomePage from "./pages/Home";
 import LoginPage from "./pages/Login";
 import { AuthContextProvider } from "./utils/auth/AuthContext";
 import { RequireAuth } from "./utils/auth/RequireAuth";
@@ -11,7 +12,7 @@ function App() {
           path="/"
           element={
             <RequireAuth redirectTo="/login">
-              <p>Logged</p>
+              <HomePage />
             </RequireAuth>
           }
         />
