@@ -1,7 +1,7 @@
 const BACKEND_ENDPOINT = process.env.REACT_APP_BACKEND_ENDPOINT;
 
 const error = {
-  notFound: "Could not found this user in the database",
+  notFound: "Wrong username or password",
 };
 
 export const login = async (identifiant: string, password: string) => {
