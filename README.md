@@ -3,7 +3,7 @@
 ## Run the project
 
 You need to set environement variables to run the project.
-If you run this project on local enviromenm you can create a `.env` file at the root of the project.
+If you run this project on local enviroment you can create a `.env` file at the root of the project.
 See this [example](./.env.example):
 
 ```config
@@ -34,7 +34,7 @@ It will run on port `3001`.
   - [x] Login
   - [x] Logout
   - [x] Restricted routes
-- [] Graphs
+- [ ] Graphs
   - [x] Display capacity offoad graph with data
   - [x] Display concurrent viewers graph with data
-  - [] Brush graphs
+  - [ ] Brush graphs
