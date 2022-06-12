@@ -5,7 +5,7 @@ import {
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useEffect } from "react";
-import { AuthContextProvider, useAuth } from "../../utils/auth/AuthContext";
+import { AuthContextProvider, useAuth } from "../../libs/auth/AuthContext";
 import { Header } from ".";
 
 const TestWrapper = ({ isLogged }: { isLogged: boolean }) => {

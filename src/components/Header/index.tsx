@@ -9,7 +9,7 @@ import {
   PopoverTrigger,
 } from "@chakra-ui/react";
 import { VscAccount } from "react-icons/vsc";
-import { useAuth } from "../../utils/auth/AuthContext";
+import { useAuth } from "../../libs/auth/AuthContext";
 import {
   HeaderContainer,
   UserIconButton,

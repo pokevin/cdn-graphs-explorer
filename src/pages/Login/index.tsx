@@ -2,7 +2,7 @@ import { Heading } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginForm } from "../../components/LoginForm";
-import { useAuth } from "../../utils/auth/AuthContext";
+import { useAuth } from "../../libs/auth/AuthContext";
 import { CenteredPage } from "./Login.styled";
 import type { FormEventHandler } from "react";
 

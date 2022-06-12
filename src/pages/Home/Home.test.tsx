@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { AuthContextProvider } from "../../utils/auth/AuthContext";
+import { AuthContextProvider } from "../../libs/auth/AuthContext";
 import HomePage from ".";
 
 describe("home page", () => {
