@@ -9,13 +9,7 @@ type AudienceChartProps = {
 
 export const AudienceChart = ({ data }: AudienceChartProps) => {
   if (!data) {
-    return (
-      <Chart
-        type="line"
-        title="Concurent viewers"
-        data={{ labels: [], datasets: [] }}
-      />
-    );
+    return <Chart type="line" data={{ labels: [], datasets: [] }} />;
   }
 
   const { audience } = data;
@@ -23,7 +17,7 @@ export const AudienceChart = ({ data }: AudienceChartProps) => {
   return (
     <Chart
       type="line"
-      title="Concurent viewers"
+      title=""
       data={{
         labels: audience.map(([time]) => time),
         datasets: [
@@ -55,6 +49,10 @@ export const AudienceChart = ({ data }: AudienceChartProps) => {
           mode: "index",
         },
         plugins: {
+          title: {
+            display: true,
+            text: "Concurent viewers",
+          },
           tooltip: {
             callbacks: {
               title: (args) =>

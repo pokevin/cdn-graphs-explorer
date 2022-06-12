@@ -22,13 +22,7 @@ export const BandwithChart = ({ data }: BandwithChartProps) => {
   );
 
   if (!data) {
-    return (
-      <Chart
-        type="line"
-        title="Capacity offload"
-        data={{ labels: [], datasets: [] }}
-      />
-    );
+    return <Chart type="line" data={{ labels: [], datasets: [] }} />;
   }
 
   const { p2p, cdn } = data;
@@ -36,7 +30,7 @@ export const BandwithChart = ({ data }: BandwithChartProps) => {
   return (
     <Chart
       type="line"
-      title="Capacity offload"
+      title=""
       data={{
         labels: p2p.map(([time]) => time),
         datasets: [
@@ -81,6 +75,10 @@ export const BandwithChart = ({ data }: BandwithChartProps) => {
           mode: "index",
         },
         plugins: {
+          title: {
+            display: true,
+            text: "Capacity offload",
+          },
           tooltip: {
             callbacks: {
               title: (args) =>
