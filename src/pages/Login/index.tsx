@@ -1,4 +1,4 @@
-import { Heading } from "@chakra-ui/react";
+import { Heading, Image } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginForm } from "../../components/LoginForm";
@@ -30,6 +30,7 @@ const LoginPage = () => {
 
   return (
     <CenteredPage>
+      <Image src="/logo.png" w="xs" h="xs" alt="logo" />
       <Heading as="h1" color="white" size="xl">
         CDN Graphs Explorer
       </Heading>
