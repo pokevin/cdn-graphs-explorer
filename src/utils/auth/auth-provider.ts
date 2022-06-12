@@ -20,9 +20,9 @@ export const login = async (identifiant: string, password: string) => {
     return result.session_token;
   }
   if (response.status === 404) {
-    throw error.notFound;
+    throw new Error(error.notFound);
   }
-  throw response.text();
+  throw new Error(await response.text());
 };
 
 export const logout = async (token: string) => {
@@ -38,7 +38,7 @@ export const logout = async (token: string) => {
     return result.session_token;
   }
   if (response.status === 404) {
-    throw error.notFound;
+    throw new Error(error.notFound);
   }
-  throw response.text();
+  throw new Error(await response.text());
 };

@@ -43,7 +43,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         const session_token = await authProvider.login(identifiant, password);
         setToken(session_token);
       } catch (e) {
-        return e as string;
+        return (e as Error).message;
       }
     },
     [token]
@@ -57,7 +57,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       await authProvider.logout(token);
       setToken(undefined);
     } catch (e) {
-      return e as string;
+      return (e as Error).message;
     }
   }, [token]);
 
