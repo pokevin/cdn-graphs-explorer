@@ -1,10 +1,7 @@
-import { Chart as ChartJS, registerables } from "chart.js";
-import ZoomPLugin from "chartjs-plugin-zoom";
+import "chart.js/auto";
 import { Chart } from "./Chart.styled";
 import { fullDateFormatter, shortDateFormatter } from "./Chart.utils";
 import type { AudienceResponse } from "../../libs/cdn/cdn-provider";
-
-ChartJS.register(ZoomPLugin, ...registerables);
 
 type AudienceChartProps = {
   data?: AudienceResponse;
@@ -62,17 +59,6 @@ export const AudienceChart = ({ data }: AudienceChartProps) => {
             callbacks: {
               title: (args) =>
                 fullDateFormatter(new Date(parseInt(args[0].label, 10))),
-            },
-          },
-          zoom: {
-            zoom: {
-              wheel: {
-                enabled: true,
-              },
-              pinch: {
-                enabled: true,
-              },
-              mode: "xy",
             },
           },
         },
