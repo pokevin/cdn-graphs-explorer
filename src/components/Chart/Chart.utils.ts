@@ -14,5 +14,5 @@ export const fullDateFormatter = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
   hour: "2-digit",
   minute: "2-digit",
-  timeZoneName: "shortOffset",
+  timeZoneName: "short",
 }).format;
