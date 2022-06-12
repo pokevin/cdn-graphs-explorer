@@ -3,6 +3,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useRef,
   useState,
 } from "react";
 import * as authProvider from "./auth-provider";
@@ -15,6 +16,10 @@ type AuthContextValue = {
   isAuth: boolean;
   login: (identifiant: string, password: string) => Promise<string | undefined>;
   logout: () => Promise<string | undefined>;
+  authFetcher: (
+    input: RequestInfo | URL,
+    init?: RequestInit
+  ) => Promise<Response>;
 };
 
 const AuthContext = createContext<AuthContextValue>({
@@ -25,6 +30,9 @@ const AuthContext = createContext<AuthContextValue>({
   logout: () => {
     throw new Error(missingContextError);
   },
+  authFetcher: () => {
+    throw new Error(missingContextError);
+  },
 });
 
 type AuthContextProviderProps = {
@@ -33,6 +41,7 @@ type AuthContextProviderProps = {
 
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [token, setToken] = useState<string | undefined>(undefined);
+  const logoutRef = useRef<() => Promise<string | undefined>>();
 
   const login = useCallback(
     async (identifiant: string, password: string) => {
@@ -61,14 +70,33 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     }
   }, [token]);
 
+  // Logout automaticaly when navigate away
   useEffect(() => {
-    return () => {
-      logout();
-    };
+    if (logoutRef.current) {
+      window.removeEventListener("beforeunload", logoutRef.current);
+    }
+    logoutRef.current = logout;
+    window.addEventListener("beforeunload", logoutRef.current);
   }, [logout]);
 
+  const authFetcher = (input: RequestInfo | URL, init?: RequestInit) => {
+    const requestBody =
+      init?.body && typeof init.body === "string"
+        ? JSON.parse(init.body)
+        : init?.body ?? {};
+    return fetch(input, {
+      ...init,
+      body: JSON.stringify({
+        ...requestBody,
+        session_token: token,
+      }),
+    });
+  };
+
   return (
-    <AuthContext.Provider value={{ isAuth: !!token, login, logout }}>
+    <AuthContext.Provider
+      value={{ isAuth: !!token, login, logout, authFetcher }}
+    >
       {children}
     </AuthContext.Provider>
   );
